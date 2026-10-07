@@ -1,0 +1,383 @@
+/* ==========================================================================
+   House of Hope — global styles
+   Brand: green #77B74A, orange #DC8E42. Darker shades are used wherever
+   text sits on a color so everything meets WCAG contrast.
+   ========================================================================== */
+
+:root {
+  --green: #77b74a;
+  --green-text: #3f7a22; /* green that passes contrast on white */
+  --green-deep: #24461a;
+  --green-light: #a6d884;
+  --orange: #dc8e42;
+  --orange-hover: #c97a2e;
+  --orange-text: #b4621a;
+  --orange-light: #f2b77a;
+  --ink: #1c1f1a;
+  --ink-soft: #4a4d45;
+  --night: #141612;
+  --sand: #f6f4ef;
+  --line: #eceae4;
+  --line-strong: #dad6cc;
+  --white: #ffffff;
+
+  --font-display: 'Jost', system-ui, sans-serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+
+  --wrap: 1200px;
+  --section: clamp(72px, 10vw, 120px);
+  --radius: 4px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Astro writes width/height attributes on every image (good for layout
+   stability). height:auto stops that attribute from forcing a fixed pixel
+   height, so aspect-ratio boxes and object-fit crops work as intended. */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--green-text);
+}
+a:hover {
+  color: var(--green-deep);
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius);
+}
+.skip-link:focus {
+  top: 16px;
+  color: var(--white);
+}
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 32px);
+}
+.wrap--narrow {
+  max-width: 980px;
+}
+
+.section {
+  padding: var(--section) 0;
+}
+.section--sand {
+  background: var(--sand);
+}
+.section--dark {
+  background: var(--ink);
+  color: var(--white);
+}
+.section--green {
+  background: var(--green-deep);
+  color: var(--white);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.stack--lg {
+  gap: 56px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 32px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+  gap: clamp(40px, 6vw, 72px);
+  align-items: center;
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.section-head > div {
+  max-width: 640px;
+}
+.section-head > p {
+  max-width: 440px;
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+/* ---------- Type ---------- */
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green-text);
+}
+.eyebrow--orange {
+  color: var(--orange-text);
+}
+.eyebrow--light {
+  color: var(--green-light);
+}
+.eyebrow--peach {
+  color: var(--orange-light);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
+.h1 {
+  font-weight: 800;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.h2 {
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.h3 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.lead {
+  margin: 0;
+  font-size: clamp(18px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.section--dark .lead {
+  color: #d9d6cf;
+}
+.section--green .lead {
+  color: #d5e2cc;
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+.prose p {
+  margin: 0 0 1.1em;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.rule {
+  width: 64px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 32px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.btn--orange {
+  background: var(--orange);
+  color: var(--ink);
+}
+.btn--orange:hover {
+  background: var(--orange-hover);
+  color: var(--ink);
+}
+.btn--ghost {
+  border-color: var(--white);
+  color: var(--white);
+  background: transparent;
+}
+.btn--ghost:hover {
+  background: var(--white);
+  color: var(--ink);
+}
+.btn--dark {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: transparent;
+}
+.btn--dark:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn--solid-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn--solid-dark:hover {
+  background: #000;
+  color: var(--white);
+}
+
+.text-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Media ---------- */
+
+.photo {
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.photo--4x3 {
+  aspect-ratio: 4 / 3;
+}
+.photo--4x5 {
+  aspect-ratio: 4 / 5;
+}
+.photo--16x9 {
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------- Cards & lists ---------- */
+
+.card {
+  background: var(--sand);
+  border-radius: var(--radius);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.card p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.card--green {
+  background: var(--green-deep);
+  color: var(--white);
+}
+.card--green p {
+  color: #d5e2cc;
+}
+.card__foot {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.numbered {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line-strong);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.numbered li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-strong);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+}
+.numbered span {
+  color: var(--orange);
+  font-weight: 800;
+}

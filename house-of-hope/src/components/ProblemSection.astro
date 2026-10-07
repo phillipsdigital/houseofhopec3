@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import problem from '../assets/images/problem.jpg';
+import street from '../assets/images/street.jpg';
+import { problems } from '../data/content';
+---
+
+<section class="section section--sand">
+  <div class="wrap split">
+    <div class="problem__photos">
+      <Image
+        src={problem}
+        alt="A mother holding her baby among a crowd of families waiting together in Haiti"
+        class="photo"
+        style="object-position: 30% center"
+        widths={[600, 1200]}
+        sizes="(max-width: 800px) 100vw, 560px"
+      />
+      <Image
+        src={street}
+        alt="A busy street in a Haitian town with colorful buildings and a domed cathedral against the mountains"
+        class="photo"
+        style="object-position: center 40%"
+        widths={[600, 1200]}
+        sizes="(max-width: 800px) 100vw, 560px"
+      />
+    </div>
+    <div class="stack">
+      <p class="eyebrow eyebrow--orange">The problem</p>
+      <h2 class="h2">Trauma runs deep. Care is hard to find.</h2>
+      <p class="lead">
+        Haiti faces a complex web of challenges that make strong mental health care essential. Families carry trauma from:
+      </p>
+      <ol class="numbered">
+        {problems.map((p, i) => <li><span>{String(i + 1).padStart(2, '0')}</span>{p}</li>)}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Two wide photos stacked; each keeps close to its original shape so
+     very little is cropped. */
+  .problem__photos {
+    display: grid;
+    gap: 16px;
+  }
+  .problem__photos img {
+    aspect-ratio: 2 / 1;
+  }
+</style>

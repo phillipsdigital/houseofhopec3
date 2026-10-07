@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProblemSection from '../components/ProblemSection.astro';
+import StoryVideo from '../components/StoryVideo.astro';
+import Beliefs from '../components/Beliefs.astro';
+import Partners from '../components/Partners.astro';
+import hero from '../assets/images/hero.jpg';
+import training from '../assets/images/training.jpg';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="About Us"
+  description="House of Hope Christian Counseling Center provides accessible, faith-based mental health support to individuals, families and communities across Haiti."
+>
+  <PageHero
+    eyebrow="About House of Hope"
+    title="Hope, healing and restoration for Haiti."
+    lead="A Christian counseling ministry bringing accessible, faith-based mental health care to communities across Haiti."
+    image={hero}
+    alt="House of Hope counselors and training graduates holding certificates outside a school in Haiti"
+    position="center 35%"
+  />
+
+  <!-- Mission + empowering communities -->
+  <section class="section">
+    <div class="wrap split" style="align-items: start;">
+      <div class="stack">
+        <p class="eyebrow">Our mission</p>
+        <h2 class="h2">Care that helps families heal, rebuild and thrive.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          The House of Hope Christian Counseling Center is dedicated to providing critical mental health support to Haiti, particularly in regions ravaged by violence.
+        </p>
+        <p>
+          Our mission is to offer accessible, faith-based counseling services that empower individuals and families to heal, rebuild, and thrive.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="wrap split">
+      <div class="stack">
+        <p class="eyebrow eyebrow--orange">Empowering communities</p>
+        <h2 class="h2">A network of care beyond our walls.</h2>
+        <div class="prose">
+          <p>
+            Our programs equip church leaders and educators with the tools and training they need to better support their communities.
+          </p>
+          <p>
+            By doing so, we aim to create a network of care and support that extends far beyond our center’s walls.
+          </p>
+        </div>
+        <div><a class="btn btn--dark" href="/services/">Explore our services</a></div>
+      </div>
+      <Image
+        src={training}
+        alt="A House of Hope trainer leads a mental health workshop for a room of local educators and leaders"
+        class="photo photo--4x3"
+        style="object-position: center 60%"
+        widths={[600, 1200]}
+        sizes="(max-width: 800px) 100vw, 560px"
+      />
+    </div>
+  </section>
+
+  <ProblemSection />
+
+  <!-- Strategy -->
+  <section class="section">
+    <div class="wrap wrap--narrow stack center" style="gap: 28px;">
+      <p class="eyebrow">Our strategy</p>
+      <h2 class="h2">We go where the need is.</h2>
+      <p class="lead">
+        We provide mobile counseling services through our team, which travels to community institutions like churches and schools to provide counseling, conduct trainings, and raise awareness about mental health.
+      </p>
+      <div class="rule"></div>
+      <p class="lead">
+        With your support, we can establish a robust foundation for essential mental health services, grounded in Christian values and principles. Together, we can bring hope, healing, and restoration to those in need.
+      </p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--orange" href={site.donateUrl}>Join the mission</a>
+        <a class="btn btn--dark" href="/get-involved/">Ways to help</a>
+      </div>
+    </div>
+  </section>
+
+  <StoryVideo />
+  <Beliefs />
+  <Partners />
+</BaseLayout>

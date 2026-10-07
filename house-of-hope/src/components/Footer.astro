@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/logo.png';
+import { site, nav } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <span class="footer__logo">
+          <Image src={logo} alt="House of Hope logo" width={62} height={62} />
+        </span>
+        <p class="footer__name">HOUSE OF HOPE</p>
+        <p class="footer__muted">Christian Counseling Center serving communities throughout Haiti.</p>
+      </div>
+
+      <div class="footer__col">
+        <p class="eyebrow eyebrow--light">Explore</p>
+        <a href="/">Home</a>
+        {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href={site.donateUrl}>Donate</a>
+      </div>
+
+      <div class="footer__col">
+        <p class="eyebrow eyebrow--light">Contact</p>
+        <a href={site.phoneHref}>{site.phone}</a>
+        <a href={site.emailHref}>{site.email}</a>
+        <a href={site.facebookUrl}>Facebook</a>
+        <a href={site.newsletterArchiveUrl}>Past newsletters</a>
+      </div>
+
+      <div class="footer__col footer__muted">
+        <p class="eyebrow eyebrow--light">Give by mail</p>
+        <p>Checks payable to {site.mailing.payableTo}, sent to:</p>
+        <p class="footer__address">
+          {site.mailing.lines.map((line) => <>{line}<br /></>)}
+        </p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {year} {site.fullName}</span>
+      <span>Site by <a href="https://phillipsdigitalsolutions.com/">Phillips Digital</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--night);
+    color: #e8e6e0;
+    padding: 88px 0 40px;
+  }
+  .footer a {
+    color: #e8e6e0;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--orange);
+  }
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+  .footer__cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+    gap: 48px;
+  }
+  .footer__brand,
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .footer__col .eyebrow {
+    font-size: 13px;
+  }
+  .footer__logo {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .footer__logo img {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+  }
+  .footer__name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .footer__muted,
+  .footer__muted p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #b5b2aa;
+  }
+  .footer__address {
+    color: #e8e6e0 !important;
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 28px;
+    border-top: 1px solid #2e312a;
+    font-size: 14px;
+    color: #9a978f;
+  }
+  .footer__bottom a {
+    color: #e8e6e0;
+  }
+</style>

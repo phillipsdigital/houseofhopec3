@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import deschapelles from '../assets/images/deschapelles-building.jpg';
+import { site } from '../data/site';
+
+interface Props {
+  /** Show the longer description used on the Our Work page */
+  detailed?: boolean;
+}
+const { detailed = false } = Astro.props;
+---
+
+<div class="project">
+  <div class="project__media">
+    <Image
+      src={deschapelles}
+      alt="The new House of Hope counseling building in Deschapelles, with its green roof, orange trim and front steps"
+      widths={[700, 1200, 2000]}
+      sizes="(max-width: 900px) 100vw, 680px"
+    />
+  </div>
+  <div class="project__body">
+    <p class="eyebrow eyebrow--orange">Current project</p>
+    <h2 class="h2 project__title">Building a counseling space in Deschapelles.</h2>
+    <p>
+      In partnership with a local school, we're building a small, private space where parents and students can receive one-on-one counseling.
+    </p>
+    {
+      detailed && (
+        <p>
+          We are committed to the mental health of this community and are excited to see this project completed. With your help, families in Deschapelles will have a safe, dedicated place to talk, heal and be cared for.
+        </p>
+      )
+    }
+    <div class="project__goal">
+      <span class="project__amount">~$3,000</span>
+      <span>still needed to finish the project</span>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn--orange" href={site.donateUrl}>Give to this project</a>
+      <a class="btn btn--dark" href={site.facebookUrl}>Follow updates</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* The photo keeps its own 4:3 shape at every screen size, so the whole
+     building is always visible; the text sits beside it on wide screens
+     and below it on narrow ones. */
+  .project {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .project {
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    }
+  }
+  .project__media {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #443a2d;
+  }
+  .project__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .project__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+  .project__title {
+    font-size: clamp(30px, 3.2vw, 40px);
+  }
+  .project__body > p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .project__goal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .project__amount {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 44px;
+    color: var(--green-text);
+  }
+</style>

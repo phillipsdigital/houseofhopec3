@@ -1,0 +1,49 @@
+---
+import { beliefs } from '../data/content';
+---
+
+<section class="section section--green">
+  <div class="wrap stack stack--lg">
+    <div class="stack" style="max-width: 680px; gap: 20px;">
+      <p class="eyebrow eyebrow--peach">What we believe</p>
+      <h2 class="h2">Counseling rooted in Christ.</h2>
+    </div>
+    <div class="beliefs">
+      {
+        beliefs.map((b, i) => (
+          <div class:list={['belief', { 'belief--orange': i >= 4 }]}>
+            <h3>{b.title}</h3>
+            <p>{b.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .beliefs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 40px 32px;
+  }
+  .belief {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 2px solid var(--green);
+    padding-top: 20px;
+  }
+  .belief--orange {
+    border-top-color: var(--orange);
+  }
+  .belief h3 {
+    font-weight: 700;
+    font-size: 19px;
+  }
+  .belief p {
+    margin: 0;
+    font-size: 16px;
+    color: #d5e2cc;
+  }
+</style>

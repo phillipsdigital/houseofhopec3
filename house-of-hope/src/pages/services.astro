@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Testimonials from '../components/Testimonials.astro';
+import groupCounseling from '../assets/images/group-counseling.jpg';
+import { services } from '../data/content';
+import { site } from '../data/site';
+
+const steps = [
+  { title: 'We go to the need', text: 'Our team goes to churches, schools and other community institutions.' },
+  { title: 'We counsel & train', text: 'We provide faith-based counseling and equip local leaders to care for others.' },
+  { title: 'We raise awareness', text: 'We break down stigma so more people feel free to ask for help.' },
+];
+---
+
+<BaseLayout
+  title="Our Services"
+  description="Group counseling, mental health training workshops, and youth camps and retreats delivered by House of Hope's team across Haiti."
+>
+  <PageHero
+    eyebrow="Our services"
+    title="Bringing care to where people already gather."
+    lead="Our team travels to churches and schools to counsel, train and raise awareness about mental health."
+    image={groupCounseling}
+    alt="Participants in a group counseling session sit on mats with eyes closed in a calm, open-air room"
+  />
+
+  <!-- How it works -->
+  <section class="section">
+    <div class="wrap stack stack--lg">
+      <div class="stack center" style="gap: 20px;">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2" style="max-width: 720px;">A mobile model built for Haiti.</h2>
+      </div>
+      <ol class="steps">
+        {
+          steps.map((s, i) => (
+            <li>
+              <span class="steps__num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="h3">{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Each service -->
+  {
+    services.map((s, i) => (
+      <section class:list={['section', { 'section--sand': i % 2 === 0 }]} id={s.slug}>
+        <div class:list={['wrap', 'split', { 'split--flip': i % 2 === 1 }]}>
+          <Image src={s.image} alt={s.alt} class="photo photo--4x3" style={`object-position: ${s.position}`} widths={[600, 1200]} sizes="(max-width: 800px) 100vw, 560px" />
+          <div class="stack">
+            <h2 class="h2">{s.title}</h2>
+            <div class="prose">
+              {s.details.map((d) => <p>{d}</p>)}
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <Testimonials tone="white" />
+
+  <!-- CTA -->
+  <section class="section section--green">
+    <div class="wrap wrap--narrow stack center" style="gap: 24px;">
+      <h2 class="h2">Interested in learning more about how your church or business could partner with House of Hope?</h2>
+      <p class="lead">Reach out and we’ll talk about partnership opportunities or coming to present our mission to your church or business.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--orange" href="/get-involved/#contact">Contact us</a>
+        <a class="btn btn--ghost" href={site.donateUrl}>Fund this work</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 32px;
+  }
+  .steps li {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 2px solid var(--green);
+  }
+  .steps li:last-child {
+    border-top-color: var(--orange);
+  }
+  .steps__num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--orange-text);
+  }
+  .steps p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 760px) {
+    .split--flip > :first-child {
+      order: 2;
+    }
+  }
+</style>

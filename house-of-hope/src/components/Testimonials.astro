@@ -1,0 +1,125 @@
+---
+import { testimonials } from '../data/content';
+
+interface Props {
+  /** Section background, so it can sit between any two sections */
+  tone?: 'white' | 'sand' | 'green';
+  heading?: string;
+}
+const { tone = 'sand', heading = 'What educators are saying.' } = Astro.props;
+---
+
+<section class:list={['section', 'voices', `voices--${tone}`]}>
+  <div class="wrap stack stack--lg">
+    <div class="stack" style="gap: 20px; max-width: 680px;">
+      <p class:list={['eyebrow', tone === 'green' ? 'eyebrow--peach' : 'eyebrow--orange']}>In their words</p>
+      <h2 class="h2">{heading}</h2>
+    </div>
+    <div class="voices__grid">
+      {
+        testimonials.map((t) => (
+          <figure class="voice">
+            <svg class="voice__mark" width="40" height="32" viewBox="0 0 40 32" aria-hidden="true">
+              <path d="M0 32V19.2C0 8.4 5.6 1.9 16.8 0l1.6 4.8C12.7 6.5 9.8 10 9.6 15.2H17V32H0Zm22.6 0V19.2C22.6 8.4 28.2 1.9 39.4 0L41 4.8c-5.7 1.7-8.6 5.2-8.8 10.4h7.4V32H22.6Z" fill="currentColor" />
+            </svg>
+            <blockquote>
+              <p>{t.quote}</p>
+            </blockquote>
+            <figcaption>
+              {t.name && <span class="voice__name">{t.name}</span>}
+              <span class="voice__role">{t.role}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .voices--white {
+    background: var(--white);
+  }
+  .voices--sand {
+    background: var(--sand);
+  }
+  .voices--green {
+    background: var(--green-deep);
+    color: var(--white);
+  }
+
+  .voices__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 24px;
+  }
+
+  .voice {
+    margin: 0;
+    padding: clamp(28px, 3.5vw, 40px);
+    border-radius: var(--radius);
+    background: var(--white);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .voices--white .voice {
+    background: var(--sand);
+    border-color: var(--sand);
+  }
+  .voices--green .voice {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .voice__mark {
+    color: var(--orange);
+  }
+
+  .voice blockquote {
+    margin: 0;
+    flex: 1;
+  }
+  .voice blockquote p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(19px, 1.7vw, 22px);
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .voices--green .voice blockquote p {
+    color: var(--white);
+  }
+
+  .voice figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 18px;
+    border-top: 2px solid var(--green);
+  }
+  .voice__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .voice__role {
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .voices--green .voice__role {
+    color: #d5e2cc;
+  }
+  /* When there is no name, the role reads as the attribution line */
+  .voice__role:only-child {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: inherit;
+  }
+  .voices--green .voice__role:only-child {
+    color: var(--white);
+  }
+</style>

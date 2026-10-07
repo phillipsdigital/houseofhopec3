@@ -1,0 +1,43 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  heading?: string;
+  /** Use h1 when this block opens the page */
+  showHeading?: boolean;
+}
+const { heading = 'Join the movement of hope and healing in Haiti.', showHeading = true } = Astro.props;
+---
+
+<section class="section" id="involved">
+  <div class="wrap stack stack--lg">
+    {
+      showHeading && (
+        <div class="stack center" style="gap: 20px;">
+          <p class="eyebrow">Get involved</p>
+          <h2 class="h2" style="max-width: 760px;">{heading}</h2>
+        </div>
+      )
+    }
+    <div class="grid3">
+      <div class="card">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"></path></svg>
+        <h3 class="h3">Pray</h3>
+        <p>Join us in prayer as we bring hope and healing to Haiti.</p>
+        <a class="text-link card__foot" href={site.newsletterUrl}>Get prayer updates →</a>
+      </div>
+      <div class="card">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>
+        <h3 class="h3">Spread the word</h3>
+        <p>Share our mission with your family, friends, church, organization or business.</p>
+        <a class="text-link card__foot" href={site.facebookUrl}>Share on Facebook →</a>
+      </div>
+      <div class="card card--green">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F2B77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h4l3 3h4a2 2 0 0 1 0 4H9"></path><path d="M7 18h9l5-4a2 2 0 0 0-3-3l-3 2"></path><path d="M15 3a3 3 0 0 0-3 3c0 2 3 4 3 4s3-2 3-4a3 3 0 0 0-3-3z"></path></svg>
+        <h3 class="h3">Give</h3>
+        <p>Support our mission with a one-time gift or monthly support. Select “{site.donateFund}” from the funds list.</p>
+        <div class="card__foot"><a class="btn btn--orange" href={site.donateUrl}>Give now</a></div>
+      </div>
+    </div>
+  </div>
+</section>

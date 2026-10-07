@@ -1,0 +1,177 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProblemSection from '../components/ProblemSection.astro';
+import StoryVideo from '../components/StoryVideo.astro';
+import ProjectFeature from '../components/ProjectFeature.astro';
+import Beliefs from '../components/Beliefs.astro';
+import WaysToHelp from '../components/WaysToHelp.astro';
+import Partners from '../components/Partners.astro';
+import Testimonials from '../components/Testimonials.astro';
+import hero from '../assets/images/hero.jpg';
+import { site } from '../data/site';
+import { services } from '../data/content';
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="hero">
+    <Image
+      src={hero}
+      alt="House of Hope counselors and training graduates holding certificates outside a school in Haiti"
+      class="hero__img"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero__shade">
+      <div class="wrap hero__content">
+        <p class="eyebrow eyebrow--light">Faith-based mental health care and training · Haiti</p>
+        <h1 class="h1">Building resilient communities through hope and healing.</h1>
+        <p class="hero__lead">
+          House of Hope brings mobile Christian counseling, mental health training and youth camps to communities across Haiti, especially in regions ravaged by violence.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--orange" href={site.donateUrl}>Give here</a>
+          <a class="btn btn--ghost" href="#story">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+            Watch our story
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="section">
+    <div class="wrap wrap--narrow stack center" style="gap: 32px;">
+      <p class="eyebrow">Our mission</p>
+      <p class="mission">
+        House of Hope is dedicated to providing critical mental health support to Haiti through <em>accessible, faith-based counseling</em> that empowers individuals and families to <em>heal, rebuild, and thrive.</em>
+      </p>
+      <div class="rule"></div>
+      <p class="lead" style="max-width: 760px;">
+        We also equip church leaders and educators with the tools and training to care for their own communities, creating a network of support that reaches far beyond our walls.
+      </p>
+      <a class="text-link" href="/about/">More about us →</a>
+    </div>
+  </section>
+
+  <ProblemSection />
+
+  <!-- Services -->
+  <section class="section">
+    <div class="wrap stack stack--lg">
+      <div class="section-head">
+        <div class="stack" style="gap: 20px;">
+          <p class="eyebrow">Our strategy</p>
+          <h2 class="h2">We bring care to where people already gather.</h2>
+        </div>
+        <p class="lead" style="font-size: 18px;">
+          Our mobile team travels to churches and schools to counsel, train and raise awareness about mental health.
+        </p>
+      </div>
+      <div class="grid3">
+        {
+          services.map((s) => (
+            <a class="service" href={`/services/#${s.slug}`}>
+              <Image src={s.image} alt={s.alt} class="photo photo--4x3" style={`object-position: ${s.position}`} widths={[500, 900]} sizes="(max-width: 900px) 100vw, 380px" />
+              <h3 class="h3">{s.title}</h3>
+              <p>{s.summary}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Testimonials tone="sand" />
+
+  <StoryVideo />
+
+  <section class="section">
+    <div class="wrap">
+      <ProjectFeature />
+    </div>
+  </section>
+
+  <Beliefs />
+  <WaysToHelp />
+  <Partners />
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: min(720px, 92vh);
+    display: flex;
+    background: #4c4635;
+    overflow: hidden;
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+  .hero__shade {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background:
+      linear-gradient(90deg, rgba(16, 20, 13, 0.9) 0%, rgba(16, 20, 13, 0.78) 45%, rgba(16, 20, 13, 0.5) 100%),
+      linear-gradient(0deg, rgba(36, 70, 26, 0.35) 0%, rgba(36, 70, 26, 0) 60%);
+  }
+  .hero__content {
+    width: 100%;
+    padding-top: clamp(80px, 12vw, 120px);
+    padding-bottom: clamp(80px, 12vw, 120px);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .hero__content > * {
+    max-width: 720px;
+  }
+  .hero .h1 {
+    color: var(--white);
+  }
+  .hero__lead {
+    margin: 0;
+    max-width: 600px;
+    font-size: clamp(18px, 1.6vw, 20px);
+    color: #f1efea;
+  }
+
+  .mission {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(24px, 2.8vw, 34px);
+    line-height: 1.45;
+  }
+  .mission em {
+    font-weight: 700;
+    color: var(--green-text);
+  }
+
+  .service {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .service .h3 {
+    margin-top: 6px;
+  }
+  .service p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .service:hover .h3 {
+    color: var(--green-text);
+  }
+</style>

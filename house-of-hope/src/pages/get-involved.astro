@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import WaysToHelp from '../components/WaysToHelp.astro';
+import camp from '../assets/images/camp.jpg';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Get Involved"
+  description="Pray, share and give to support House of Hope's Christian counseling ministry in Haiti. Give online or by check, or contact us by phone, email or mail."
+>
+  <PageHero
+    eyebrow="Get involved"
+    title="Join the movement of hope and healing."
+    lead="Whether you pray, share or give, you help bring counseling and care to families across Haiti."
+    image={camp}
+    alt="A large group of youth camp participants gathered outdoors on a court beneath tall trees"
+    position="center 62%"
+  >
+    <div class="btn-row" style="padding-top: 8px;">
+      <a class="btn btn--orange" href={site.donateUrl}>Give now</a>
+      <a class="btn btn--ghost" href="#contact">Contact us</a>
+    </div>
+  </PageHero>
+
+  <WaysToHelp showHeading={false} />
+
+  <!-- Ways to give -->
+  <section class="section section--sand" id="give">
+    <div class="wrap stack stack--lg">
+      <div class="stack" style="gap: 20px; max-width: 680px;">
+        <p class="eyebrow eyebrow--orange">Donate</p>
+        <h2 class="h2">Two simple ways to give.</h2>
+        <p class="lead">Support our mission with a one-time gift or ongoing monthly support.</p>
+      </div>
+
+      <div class="give">
+        <div class="give__card">
+          <span class="give__num">01</span>
+          <h3 class="h3">Give online</h3>
+          <p>Give securely through our giving page. When you get there, select <strong>{site.donateFund}</strong> from the funds list.</p>
+          <div class="card__foot"><a class="btn btn--orange" href={site.donateUrl}>Give online</a></div>
+        </div>
+        <div class="give__card">
+          <span class="give__num">02</span>
+          <h3 class="h3">Give by check</h3>
+          <p>Make checks payable to <strong>{site.mailing.payableTo}</strong> and mail them to:</p>
+          <address>
+            {site.mailing.lines.map((line) => <>{line}<br /></>)}
+          </address>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="wrap stack stack--lg">
+      <div class="stack" style="gap: 20px; max-width: 680px;">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2">We’d love to hear from you.</h2>
+        <p class="lead">Want to learn more about House of Hope, bring our team to your church or school, or get connected? Reach out any time.</p>
+      </div>
+      <div class="contact">
+        <a class="contact__card" href={site.phoneHref}>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+          <p class="eyebrow">By phone</p>
+          <span class="contact__value">{site.phone}</span>
+        </a>
+        <a class="contact__card" href={site.emailHref}>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 6-10 7L2 6"></path></svg>
+          <p class="eyebrow">By email</p>
+          <span class="contact__value">{site.email}</span>
+        </a>
+        <div class="contact__card">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <p class="eyebrow">By mail</p>
+          <address class="contact__value">
+            {site.mailing.lines.map((line) => <>{line}<br /></>)}
+          </address>
+        </div>
+        <a class="contact__card" href={site.facebookUrl}>
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#3F7A22" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <p class="eyebrow">On Facebook</p>
+          <span class="contact__value">@HouseofHopeC3</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project nudge -->
+  <section class="section section--sand">
+    <div class="wrap wrap--narrow stack center" style="gap: 24px;">
+      <p class="eyebrow">Where your gift goes now</p>
+      <h2 class="h2">Help us finish the Deschapelles counseling space.</h2>
+      <p class="lead">About $3,000 will complete a private space where parents and students can receive one-on-one counseling.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--orange" href={site.donateUrl}>Give to this project</a>
+        <a class="btn btn--dark" href="/our-work/">See the project</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .give {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
+    gap: 32px;
+  }
+  .give__card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(32px, 4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .give__card p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+  .give__card strong {
+    color: var(--ink);
+  }
+  .give__num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--orange-text);
+  }
+  .give__card address {
+    font-style: normal;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.6;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 24px;
+  }
+  .contact__card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 36px;
+    background: var(--sand);
+    border-radius: var(--radius);
+    color: var(--ink);
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: border-color 0.15s;
+  }
+  a.contact__card:hover {
+    border-color: var(--green);
+    color: var(--ink);
+  }
+  .contact__value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    font-style: normal;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+</style>
