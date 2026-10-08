@@ -20,8 +20,8 @@ export const site = {
   emailHref: 'mailto:info@houseofhopec3.org',
 
   mailing: {
-    payableTo: 'House of Hope Counseling',
-    lines: ['Hope Haitian Ministries', 'PO Box 374', 'Boothbay, ME 04537'],
+    payableTo: 'House of Hope Christian Counseling',
+    lines: ['House of Hope Christian Counseling', '220 W Daughterty Street #42', 'Webb City, MO 64870'],
   },
 
   announcement: {
