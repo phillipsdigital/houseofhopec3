@@ -113,6 +113,19 @@ import { services } from '../data/content';
     });
     return false;
   }
+
+  // Sign-up conversion: fires when the newsletter form is submitted
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (form && form.querySelector && form.querySelector('input[type="email"]')) {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18564703090/lh0YCJGS3rUdEPLGq5RF',
+        'value': 1.0,
+        'currency': 'USD',
+        'transport_type': 'beacon'
+      });
+    }
+  });
 </script>
 </BaseLayout>
 
