@@ -31,7 +31,7 @@ import { services } from '../data/content';
           House of Hope brings mobile Christian counseling, mental health training and youth camps to communities across Haiti, especially in regions ravaged by violence.
         </p>
         <div class="btn-row">
-          <a class="btn btn--orange" href={site.donateUrl}>Give here</a>
+          <a class="btn btn--orange" href={site.donateUrl} onclick="return gtag_report_conversion(this.href)">Give here</a>
           <a class="btn btn--ghost" href="#story">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
             Watch our story
