@@ -97,6 +97,23 @@ import { services } from '../data/content';
   <Beliefs />
   <WaysToHelp />
   <Partners />
+<script is:inline>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18564703090/SZEnCNvP3rUdEPLGq5RF',
+      'value': 1.0,
+      'currency': 'USD',
+      'transaction_id': '',
+      'event_callback': callback
+    });
+    return false;
+  }
+</script>
 </BaseLayout>
 
 <style>
